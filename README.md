@@ -1,2 +1,11 @@
 # sample-store-dropwizard
-Sample Project using Dropwizard
+The main idea here is create a project using Dropwizard.
+
+## Store Model
+The store model will be implemented using the concept of B2C (Business-to-Consumer).
+
+## Bounded Context
+![Bounded Context](http://i.imgur.com/jS9SrEO.png)
+
+## UI
+[Aware UI](http://market.designmodo.com/aware-ui/)
