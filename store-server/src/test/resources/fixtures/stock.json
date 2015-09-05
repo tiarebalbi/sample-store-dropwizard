@@ -1,0 +1,13 @@
+{
+  "product": {
+    "name": "Sample 1",
+    "description": "Sample data to test",
+    "pictures": [
+      "image1.jpg",
+      "image2.jpg",
+      "image3.jpg"
+    ],
+    "price": 33.20
+  },
+  "quantily": 20
+}
