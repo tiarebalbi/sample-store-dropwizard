@@ -1,5 +1,8 @@
-# sample-store-dropwizard
+# Sample Store Dropwizard
 The main idea here is create a project using Dropwizard.
+
+[![Build Status](https://snap-ci.com/tiarebalbi/sample-store-dropwizard/branch/master/build_image)](https://snap-ci.com/tiarebalbi/sample-store-dropwizard/branch/master)
+
 
 ## Store Model
 The store model will be implemented using the concept of B2C (Business-to-Consumer).
