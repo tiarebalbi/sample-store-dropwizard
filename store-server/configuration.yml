@@ -5,13 +5,13 @@ database:
   driverClass: org.postgresql.Driver
 
   # the username
-  user: ${DB_USER:store-user}
+  user: store-user
 
   # the password
-  password: ${DB_PASS:store-password}
+  password: store-password
 
   # the JDBC URL
-  url: jdbc:postgresql://${DB_HOST:localhost}/${DB_NAME:store}
+  url: jdbc:postgresql://localhost/store
 
   # any properties specific to your JDBC driver:
   properties:
@@ -25,10 +25,10 @@ database:
   validationQuery: "/* MyApplication Health Check */ SELECT 1"
 
   # the minimum number of connections to keep open
-  minSize: ${MIN_CONNECTION:8}
+  minSize: 8
 
   # the maximum number of connections to keep open
-  maxSize: ${MAX_CONNECTION:32}
+  maxSize: 32
 
   # whether or not idle connections should be validated
   checkConnectionWhileIdle: false

@@ -1,11 +1,12 @@
 package com.tiarebalbi.store.db;
 
+import com.tiarebalbi.store.api.PageRequest;
 import com.tiarebalbi.store.core.Product;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,13 +33,16 @@ public class ProductDAO extends AbstractDAO<Product> {
         return get(id);
     }
 
-    public List<Product> query(Query query) {
+    public List<Product> getList(PageRequest pagination) {
 
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("finding a list of products using a query");
         }
 
-        return list(query);
+        return currentSession().createQuery("FROM Product s")
+                .setFirstResult(pagination.getOffset())
+                .setMaxResults(pagination.getSize())
+                .list();
     }
 
     public Product save(Product product) {
@@ -51,6 +55,11 @@ public class ProductDAO extends AbstractDAO<Product> {
             }
         }
 
-        return save(product);
+        // Define default date
+        if (product.getPublicationDate() == null) {
+            product.setPublicationDate(new Date());
+        }
+
+        return super.persist(product);
     }
 }

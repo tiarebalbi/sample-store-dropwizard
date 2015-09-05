@@ -2,7 +2,7 @@ package com.tiarebalbi.store.db;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiarebalbi.store.core.Product;
-import com.tiarebalbi.store.support.Profile;
+import com.tiarebalbi.store.util.Profile;
 import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
 
@@ -29,7 +29,6 @@ public class ProductTest {
                 .price(new BigDecimal("33.20"))
                 .picture("image1.jpg").picture("image2.jpg").picture("image3.jpg")
                 .build();
-
         final String expected = MAPPER.writeValueAsString(
                 MAPPER.readValue(fixture("fixtures/products.json"), Product.class));
 

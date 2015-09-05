@@ -1,4 +1,4 @@
-package com.tiarebalbi.store.support;
+package com.tiarebalbi.store.util;
 
 /**
  * @author Tiarê Balbi Bonamini

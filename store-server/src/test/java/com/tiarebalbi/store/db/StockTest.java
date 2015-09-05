@@ -3,7 +3,7 @@ package com.tiarebalbi.store.db;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiarebalbi.store.core.Product;
 import com.tiarebalbi.store.core.Stock;
-import com.tiarebalbi.store.support.Profile;
+import com.tiarebalbi.store.util.Profile;
 import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
 
