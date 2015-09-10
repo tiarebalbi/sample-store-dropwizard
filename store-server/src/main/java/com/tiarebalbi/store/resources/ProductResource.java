@@ -3,7 +3,7 @@ package com.tiarebalbi.store.resources;
 import com.codahale.metrics.annotation.Timed;
 import com.tiarebalbi.store.api.PageRequest;
 import com.tiarebalbi.store.api.ResponseEntity;
-import com.tiarebalbi.store.core.Product;
+import com.tiarebalbi.store.core.catalog.Product;
 import com.tiarebalbi.store.db.ProductDAO;
 import com.tiarebalbi.store.util.Assert;
 import io.dropwizard.hibernate.UnitOfWork;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Path("/api/v1/product")
 @Produces(MediaType.APPLICATION_JSON)
-//@Consumes(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ProductResource {
 
     public static final int DEFAULT_NUMBER_OF_TUPLES = 20;
@@ -29,7 +29,6 @@ public class ProductResource {
     public ProductResource(ProductDAO productDAO) {
         this.productDAO = productDAO;
     }
-
 
     @GET
     @Timed
@@ -40,8 +39,7 @@ public class ProductResource {
             size = DEFAULT_NUMBER_OF_TUPLES;
         }
 
-        PageRequest pagination = PageRequest.builder().page(page).size(size).build();
-        List<Product> products = this.productDAO.getList(pagination);
+        List<Product> products = this.productDAO.getList(page, size);
         return new ResponseEntity<>(products, HttpStatus.OK_200);
     }
 
@@ -51,18 +49,27 @@ public class ProductResource {
     @Path("/{id}")
     @UnitOfWork
     public ResponseEntity<Product> getInfo(@PathParam("id") Long id) {
-        return new ResponseEntity<>(this.productDAO.findById(id));
+        Product product = this.productDAO.findById(id);
+        return new ResponseEntity<>(product);
+    }
+
+    @GET
+    @Timed
+    @Path("/{id}/pictures")
+    @UnitOfWork
+    public ResponseEntity<List<String>> getPictures(@PathParam("id") Long id) {
+        return new ResponseEntity<>(this.productDAO.getPictures(id));
     }
 
     @POST
     @Timed
     @UnitOfWork
-    public ResponseEntity<Product> save(@Valid Product product) {
+    public ResponseEntity<?> save(@Valid Product product) {
         try {
             return new ResponseEntity<>(this.productDAO.save(product));
 
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR_500);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR_500);
         }
     }
 

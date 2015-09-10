@@ -1,6 +1,6 @@
 package com.tiarebalbi.store;
 
-import com.tiarebalbi.store.core.Product;
+import com.tiarebalbi.store.core.catalog.Product;
 import com.tiarebalbi.store.db.ProductDAO;
 import com.tiarebalbi.store.resources.ProductResource;
 import io.dropwizard.Application;

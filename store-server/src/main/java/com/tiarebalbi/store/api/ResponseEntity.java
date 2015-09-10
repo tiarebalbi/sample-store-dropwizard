@@ -42,4 +42,13 @@ public final class ResponseEntity<T> {
     public T getResponse() {
         return response;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ResponseEntity{");
+        sb.append("status=").append(httpStatus);
+        sb.append(", response=").append(response);
+        sb.append('}');
+        return sb.toString();
+    }
 }
