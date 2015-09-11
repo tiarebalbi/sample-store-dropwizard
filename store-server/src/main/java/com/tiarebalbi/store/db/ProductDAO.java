@@ -33,9 +33,7 @@ public class ProductDAO extends AbstractDAO<Product> {
         return get(id);
     }
 
-    public List<Product> getList(int page, int size) {
-
-        PageRequest pagination = PageRequest.builder().page(page).size(size).build();
+    public List<Product> getList(PageRequest pagination) {
 
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("finding a list of products using a query");

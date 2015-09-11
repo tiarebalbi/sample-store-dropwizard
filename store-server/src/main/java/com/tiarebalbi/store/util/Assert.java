@@ -17,4 +17,14 @@ public final class Assert {
             throw new IllegalArgumentException("This argument is required; it must not be null");
         }
     }
+
+    public static void isTrue(boolean expression, String message) {
+        if(!expression) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void isTrue(boolean expression) {
+        isTrue(expression, "This expression must be true");
+    }
 }
