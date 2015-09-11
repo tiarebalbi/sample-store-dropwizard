@@ -1,7 +1,7 @@
 package com.tiarebalbi.store.db;
 
 import com.tiarebalbi.store.api.PageRequest;
-import com.tiarebalbi.store.core.Product;
+import com.tiarebalbi.store.core.catalog.Product;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
@@ -43,6 +43,10 @@ public class ProductDAO extends AbstractDAO<Product> {
                 .setFirstResult(pagination.getOffset())
                 .setMaxResults(pagination.getSize())
                 .list();
+    }
+
+    public List<String> getPictures(Long idProduct) {
+        return currentSession().createSQLQuery("SELECT p.picture FROM product_picture p WHERE p.product_id = :idProduct").setParameter("idProduct", idProduct).list();
     }
 
     public Product save(Product product) {

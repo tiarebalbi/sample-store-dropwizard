@@ -1,4 +1,4 @@
-package com.tiarebalbi.store.core;
+package com.tiarebalbi.store.core.catalog;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

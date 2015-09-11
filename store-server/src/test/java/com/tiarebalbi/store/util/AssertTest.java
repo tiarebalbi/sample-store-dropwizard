@@ -40,4 +40,25 @@ public class AssertTest {
         Assert.notNull("2");
     }
 
+
+    @Test
+    public void shouldTestTrueExpression() {
+        Assert.isTrue(1 + 1 == 2);
+    }
+
+    @Test
+    public void shouldThrowExceptionOnFalse() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage(equalTo("This expression must be true"));
+
+        Assert.isTrue(1 + 1 == 3);
+    }
+    @Test
+    public void shouldThrowExceptionOnFalseWithCustomMessage() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage(equalTo("Ops!! Error"));
+
+        Assert.isTrue(1 + 1 == 3, "Ops!! Error");
+    }
+
 }
