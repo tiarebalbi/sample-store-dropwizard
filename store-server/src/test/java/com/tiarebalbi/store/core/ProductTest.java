@@ -1,8 +1,7 @@
-package com.tiarebalbi.store.db;
+package com.tiarebalbi.store.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiarebalbi.store.core.catalog.Product;
-import com.tiarebalbi.store.core.catalog.Stock;
 import com.tiarebalbi.store.util.Profile;
 import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
@@ -16,13 +15,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Tiarê Balbi Bonamini
  * @version 1.0.0
  */
-public class StockTest {
+public class ProductTest {
 
     private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
 
     @Test
     @org.junit.experimental.categories.Category(value = Profile.UnitTest.class)
-    public void shouldSetAStockToTheProduct() throws Exception {
+    public void shouldTestBuildAnProduct() throws Exception {
 
         Product product = Product.builder()
                 .name("Sample 1")
@@ -30,13 +29,9 @@ public class StockTest {
                 .price(new BigDecimal("33.20"))
                 .picture("image1.jpg").picture("image2.jpg").picture("image3.jpg")
                 .build();
-
-        Stock stock = new Stock(product, 20);
-
         final String expected = MAPPER.writeValueAsString(
-                MAPPER.readValue(fixture("fixtures/stock.json"), Stock.class));
+                MAPPER.readValue(fixture("fixtures/products.json"), Product.class));
 
-        assertThat(MAPPER.writeValueAsString(stock)).isEqualTo(expected);
+        assertThat(MAPPER.writeValueAsString(product)).isEqualTo(expected);
     }
-
 }
